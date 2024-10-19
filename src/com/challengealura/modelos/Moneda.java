@@ -4,7 +4,6 @@ import java.util.Map;
 
 public class Moneda {
     String codigoMoneda;
-    double montoInicial;
     Map<String, Double> ratiosDeConversion;
 
     public Moneda(MonedaExchangeRate monedaER) {
@@ -12,11 +11,12 @@ public class Moneda {
         this.ratiosDeConversion = monedaER.conversion_rates();
     }
 
-    public void setMontoInicial(double montoInicial) {
-        this.montoInicial = montoInicial;
-    }
-
     public String getCodigoMoneda() {
         return codigoMoneda;
+    }
+
+    public double convertir(double monto, String codigoMonedaAConvertir) {
+        double montoConvertido = monto * this.ratiosDeConversion.get(codigoMonedaAConvertir);
+        return Math.round(montoConvertido * 100.0) / 100.0;
     }
 }
