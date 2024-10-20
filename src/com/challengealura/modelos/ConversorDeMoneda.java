@@ -60,8 +60,7 @@ public class ConversorDeMoneda {
             System.out.println(menu);
             this.opcion = teclado.nextInt();
             if (this.opcionInvalida()) {
-                System.out.println("¡Opción Inválida, intente nuevamente!");
-                this.pausa();
+                this.informarError("¡Opción Inválida, intente nuevamente!");
                 continue;
             } else if (this.opcion == this.opcionSalida) {
                 return;
@@ -75,8 +74,7 @@ public class ConversorDeMoneda {
             System.out.println(menu);
             this.opcion = teclado.nextInt();
             if (this.opcionInvalida()) {
-                System.out.println("¡Opción Inválida, intente nuevamente!");
-                this.pausa();
+                this.informarError("¡Opción Inválida, intente nuevamente!");
                 continue;
             } else if (this.opcion == this.opcionSalida) {
                 return;
@@ -139,8 +137,7 @@ public class ConversorDeMoneda {
             System.out.println("Ingrese el código de moneda que desee:");
             String codigoMonedaManual = this.teclado.nextLine();
             if (!this.verificarCodigo(codigoMonedaManual)) {
-                System.out.println("\n¡Código inválido, intente nuevamente!");
-                this.pausa();
+                this.informarError("\n¡Código inválido, intente nuevamente!");
                 continue;
             }
             return codigoMonedaManual;
@@ -149,5 +146,10 @@ public class ConversorDeMoneda {
 
     private boolean verificarCodigo(String codigo) {
         return codigo.length() == 3 && codigo.matches("[A-Z]{3}");
+    }
+
+    private void informarError(String mensaje) {
+        System.out.println(mensaje);
+        this.pausa();
     }
 }
